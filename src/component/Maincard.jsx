@@ -17,12 +17,12 @@ const Maincard = () => {
         <div className="cityName">
             <h2>Islamabad</h2>
         </div>
-
+        <hr className='HR'/>
         <div className="time">
             <p>sat jun 17 2024</p>
             <p>8:41 PM</p>
         </div>
-
+        <hr className='HR'/>
         <div className="windspeed">
             <h3 className='windheading'>Wind Speed:</h3>
             <p>26.9km/h</p>
