@@ -6,11 +6,16 @@ import './App.css'
 import Maincard from './component/Maincard'
 import Daycard from './component/Daycard'
 import Hourcard from './component/Hourcard'
+import Datastore from './store/Datastore'
+
 
 function App() {
 
+  
+
   return (
     <>
+    <Datastore>
     <div className="container">
     <Background/>
     <div className="materialcontainer">
@@ -40,6 +45,7 @@ function App() {
     </div>
     
     </div>
+    </Datastore>
     </>
   )
 }
