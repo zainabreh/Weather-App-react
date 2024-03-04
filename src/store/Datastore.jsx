@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useState,createContext } from "react";
-import clear from '../assets/clear.gif'
-import cloudy from '../assets/cloudy.gif'
-import rainy from '../assets/Rainy.gif'
-import snow from '../assets/Snow.gif'
+import Clear from '../assets/clear.gif'
+import clouds from '../assets/cloudy.gif'
+import Thunderstorm from '../assets/Rainy.gif'
+import Snow from '../assets/Snow.gif'
 import drizzle from '../assets/drizzle.gif'
 
 export const DataProvider = createContext();
@@ -16,6 +16,24 @@ const Datastore = ({ children }) => {
   const NewCity = (city) => {
     setCity(city);
   };
+
+  const weatherCondition = (bg)=>{
+    if(bg == 'clear'){
+          setBackground(Clear);
+        }
+        else if(bg == 'clouds'){
+          setBackground(clouds);
+        }
+        else if(bg == 'rain' || bg == 'drizzle'){
+          setBackground(drizzle);
+        }
+        else if(bg == 'snow'){
+          setBackground(Snow);
+        }
+        else if(bg == 'thunderstorm'){
+          setBackground(Thunderstorm);
+        }
+      }
 
   useEffect(() => {
     fetch(
@@ -31,25 +49,13 @@ const Datastore = ({ children }) => {
       .then((data) => {
         console.log(data);
         let bg = data.list[0].weather[0].main.toLowerCase();
-        // setting BAckground Images
-        if(bg == 'clear'){
-          setBackground(clear);
-        }
-        else if(bg == 'cloudy'){
-          setBackground(cloudy);
-        }
-        else if(bg == 'rainy' || 'thunderstorm'){
-          setBackground(rainy);
-        }
-        else if(bg == 'snow'){
-          setBackground(snow);
-        }
-        else if(bg == 'drizzle'){
-          setBackground(drizzle);
-        }
+        weatherCondition(bg);
+
+        console.log(bg);
+
       })
       .catch((error) => {
-        alert("Try Another city or Enter specific city...",error.message);
+        alert("Try Another city or Enter specific city...",error);
       });
 
   }, [city]);
