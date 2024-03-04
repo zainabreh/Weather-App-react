@@ -4,7 +4,9 @@ import { DataProvider } from '../store/Datastore';
 
 function Background() {
   const {background} = useContext(DataProvider);
+
   return (
+    
     <>
     <div className="image">
      <img src={background} alt="weather icon" />

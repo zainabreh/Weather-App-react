@@ -11,6 +11,7 @@ function SearchInputBox() {
   const handlekeyup = (e)=>{
     if(e.key === "Enter"){
       NewCity(place.current.value);
+      place.current.value = '';
     }
   }
   return (
@@ -18,7 +19,7 @@ function SearchInputBox() {
     <div className="src">
     <IoIosSearch className='icon'/>
       <input onKeyUp={handlekeyup}
-      type='text' id='inputbox' ref={place} className='inputbox' placeholder='Enter City Name....' autoComplete='off'/>
+      type='text' id='inputbox' ref={place} className='inputbox' placeholder='Enter City Name....' autoComplete='true'/>
       </div>
     </>
   )
