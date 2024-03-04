@@ -4,13 +4,19 @@ import Clear from '../assets/clear.gif'
 import clouds from '../assets/cloudy.gif'
 import Thunderstorm from '../assets/Rainy.gif'
 import Snow from '../assets/Snow.gif'
-import drizzle from '../assets/drizzle.gif'
+import snowy from '../assets/snowy.png'
+import sunny from '../assets/sunny.png'
+import cloudy from '../assets/cloudy.png'
+import rainy from '../assets/rainy.png'
+import storm from '../assets/storm.png'
+
 
 export const DataProvider = createContext();
 
 const Datastore = ({ children }) => {
   const [city, setCity] = useState("islamabad");
   const [background, setBackground] = useState("");
+  const [icon, setIcon] = useState("");
   const API_KEY = "44049957cd39c54716054a34be36db63";
 
   const NewCity = (city) => {
@@ -20,18 +26,23 @@ const Datastore = ({ children }) => {
   const weatherCondition = (bg)=>{
     if(bg == 'clear'){
           setBackground(Clear);
+          setIcon(sunny);
         }
         else if(bg == 'clouds'){
           setBackground(clouds);
+          setIcon(cloudy);
         }
         else if(bg == 'rain' || bg == 'drizzle'){
           setBackground(drizzle);
+          setIcon(rainy);
         }
         else if(bg == 'snow'){
           setBackground(Snow);
+          setIcon(snowy);
         }
         else if(bg == 'thunderstorm'){
           setBackground(Thunderstorm);
+          setIcon(storm);
         }
       }
 
@@ -49,9 +60,8 @@ const Datastore = ({ children }) => {
       .then((data) => {
         console.log(data);
         let bg = data.list[0].weather[0].main.toLowerCase();
-        weatherCondition(bg);
-
-        console.log(bg);
+        let icon = data.list[0].weather[0].main.toLowerCase();
+        weatherCondition(bg,icon);
 
       })
       .catch((error) => {
@@ -62,7 +72,7 @@ const Datastore = ({ children }) => {
 
   return (
     <>
-      <DataProvider.Provider value={{ NewCity, background }}>
+      <DataProvider.Provider value={{ NewCity, background, icon }}>
         {children}
       </DataProvider.Provider>
     </>

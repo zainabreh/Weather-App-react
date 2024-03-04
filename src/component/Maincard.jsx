@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DataProvider } from '../store/Datastore'
 
 const Maincard = () => {
+  const {icon} = useContext(DataProvider)
   return (
     <>
       <div className="maincard">
         <div className='mainInfo'>
             <div className="weathericon">
-            <img src="src\assets\rain.png" alt="weather-icon"/>
+            <img src={icon} alt="weather-icon"/>
             </div>
 
             <div className='tempHead'>
