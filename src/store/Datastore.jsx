@@ -14,11 +14,19 @@ import storm from '../assets/storm.png'
 export const DataProvider = createContext();
 
 const Datastore = ({ children }) => {
+
+  const [today,setDate] = useState(new Date());
   const [city, setCity] = useState("islamabad");
   const [background, setBackground] = useState("");
   const [icon, setIcon] = useState("");
   const [location, setLocation] = useState("");
-  const [values,setValues] = useState('');
+  const [values,setValues] = useState({
+    temperature: "",
+    humidity: "",
+    speed: "",
+    weather: "",
+  });
+
   const API_KEY = "44049957cd39c54716054a34be36db63";
 
   const NewCity = (city) => {
@@ -48,9 +56,33 @@ const Datastore = ({ children }) => {
         }
       }
 
-  // const details = ()=>{
+  const details = (temp,humidity,speed,weathercondition)=>{
+    setValues({
+      temperature: temp,
+      humidity: humidity,
+      speed: speed,
+      weather: weathercondition,
+    })
+  }
 
-  // }
+  const Time = ()=>{ 
+    useEffect(()=>{
+      const timer = setInterval(()=>{
+        setDate(new Date());
+      },60*1000);
+
+      return clearInterval(timer);
+    },[]);
+
+    const day = today.toLocaleDateString('en',{weekday:"long"});
+    const date = `${day}, ${today.getDate()}, ${today.toLocaleDateString('en',{month:'long'})}\n\n`;
+    const time = today.toLocaleDateString('en',{hour:"numeric",hour12:true,minute:"numeric"});
+
+    return {
+      date,time
+    }
+
+  }
 
   useEffect(() => {
     fetch(
@@ -65,16 +97,25 @@ const Datastore = ({ children }) => {
 
       .then((data) => {
         console.log(data);
+
         let bg = data.list[0].weather[0].main.toLowerCase();
         let icon = data.list[0].weather[0].main.toLowerCase();
         weatherCondition(bg,icon);
+
         let country = data.city.country;
         let city = data.city.name;
         let locate = `${city} - ${country}`;
         setLocation(locate);
-         
 
-        // details();
+        let temp = data.list[0].main.temp;
+        let humidity = data.list[0].main.humidity;
+        let speed = data.list[0].wind.speed;
+        let weathercondition = data.list[0].weather[0].main;
+        
+        details(temp,humidity,speed,weathercondition);
+
+        // let date = data.list[0].dt_txt;
+        
 
       })
       .catch((error) => {
@@ -85,7 +126,7 @@ const Datastore = ({ children }) => {
 
   return (
     <>
-      <DataProvider.Provider value={{ NewCity, background, icon, location}}>
+      <DataProvider.Provider value={{ NewCity, background, icon, location, values, Time}}>
         {children}
       </DataProvider.Provider>
     </>

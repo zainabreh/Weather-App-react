@@ -7,11 +7,13 @@ import Maincard from './component/Maincard'
 import Daycard from './component/Daycard'
 import Hourcard from './component/Hourcard'
 import Datastore from './store/Datastore'
-
+import { useContext } from 'react';
+import { DataProvider } from './store/Datastore';
 
 function App() {
 
-  
+  const {icon,Time,values} = useContext(DataProvider)
+  const {time} = Time();
 
   return (
     <>
@@ -25,22 +27,16 @@ function App() {
     <Maincard/>
     <div className="hour">
     <Hourcard/>
-    <Hourcard/>
-    <Hourcard/>
-    <Hourcard/>
-    <Hourcard/>
     </div>
     </div>
 
     <div className="day">
-    <Daycard/>
-    <Daycard/>
-    <Daycard/>
-    <Daycard/>
-    <Daycard/>
-    <Daycard/>
-    <Daycard/>
-    <Daycard/>
+      {
+        values.map((cur=>{
+          <Daycard icon={cur.icon} time={cur.time} values={cur.values}/>
+        }))
+      }
+    
     </div>
     </div>
     

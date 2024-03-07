@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { DataProvider } from '../store/Datastore'
 
 const Maincard = () => {
-  const {icon,location} = useContext(DataProvider)
+  const {icon,location,values,Time} = useContext(DataProvider)
+  const {time} = Time();
   return (
     <>
       <div className="maincard">
@@ -12,7 +13,7 @@ const Maincard = () => {
             </div>
 
             <div className='tempHead'>
-            <h1>27.5&deg;C</h1>
+            <h1>{values.temperature}&deg;C</h1>
             </div>
         </div>
 
@@ -21,24 +22,24 @@ const Maincard = () => {
         </div>
         <hr className='HR'/>
         <div className="time">
-            <p>sat jun 17 2024</p>
-            <p>8:41 PM</p>
+            <p>{new Date().toDateString()}</p>
+            <p>{time}</p>
         </div>
         <hr className='HR'/>
         <div className="windspeed">
             <h3 className='windheading'>Wind Speed:</h3>
-            <p>26.9km/h</p>
+            <p>{values.speed}km/h</p>
         </div>
 
         <div className="Humidity">
             <h3 className='humidityheading'>Humidity:</h3>
-            <p className='humidityValue'>73.3gm/m</p>
+            <p className='humidityValue'>{values.humidity}gm/m</p>
         </div>
 
         <hr className='HR'/>
 
         <div className="weathercondition">
-            <h1>Rain</h1>
+            <h1>{values.weather}</h1>
         </div>
 
       </div>
