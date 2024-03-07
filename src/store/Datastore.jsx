@@ -17,6 +17,8 @@ const Datastore = ({ children }) => {
   const [city, setCity] = useState("islamabad");
   const [background, setBackground] = useState("");
   const [icon, setIcon] = useState("");
+  const [location, setLocation] = useState("");
+  const [values,setValues] = useState('');
   const API_KEY = "44049957cd39c54716054a34be36db63";
 
   const NewCity = (city) => {
@@ -46,6 +48,10 @@ const Datastore = ({ children }) => {
         }
       }
 
+  // const details = ()=>{
+
+  // }
+
   useEffect(() => {
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`
@@ -62,6 +68,13 @@ const Datastore = ({ children }) => {
         let bg = data.list[0].weather[0].main.toLowerCase();
         let icon = data.list[0].weather[0].main.toLowerCase();
         weatherCondition(bg,icon);
+        let country = data.city.country;
+        let city = data.city.name;
+        let locate = `${city} - ${country}`;
+        setLocation(locate);
+         
+
+        // details();
 
       })
       .catch((error) => {
@@ -72,7 +85,7 @@ const Datastore = ({ children }) => {
 
   return (
     <>
-      <DataProvider.Provider value={{ NewCity, background, icon }}>
+      <DataProvider.Provider value={{ NewCity, background, icon, location}}>
         {children}
       </DataProvider.Provider>
     </>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { DataProvider } from '../store/Datastore'
 
 const Maincard = () => {
-  const {icon} = useContext(DataProvider)
+  const {icon,location} = useContext(DataProvider)
   return (
     <>
       <div className="maincard">
@@ -17,7 +17,7 @@ const Maincard = () => {
         </div>
 
         <div className="cityName">
-            <h2>Islamabad</h2>
+            <h2>{location}</h2>
         </div>
         <hr className='HR'/>
         <div className="time">
