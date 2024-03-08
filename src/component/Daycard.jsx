@@ -4,7 +4,7 @@ const Daycard = ({icon,time,values}) => {
   
   return (
     <>
-
+    
       <div className="daycard">
 
             <div className="dayhead">
@@ -18,7 +18,7 @@ const Daycard = ({icon,time,values}) => {
             </div>
 
             <div className='tempHead'>
-            <h1 className='daytemp'>{values.temperature}&deg;C</h1>
+            <h1 className='daytemp'>{values.main.temp}&deg;C</h1>
             </div>
 
       </div>

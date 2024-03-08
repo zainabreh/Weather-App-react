@@ -15,6 +15,8 @@ export const DataProvider = createContext();
 
 const Datastore = ({ children }) => {
 
+  const [weeklyData,setWeeklyData] = useState([]);
+
   const [today,setDate] = useState(new Date());
   const [city, setCity] = useState("islamabad");
   const [background, setBackground] = useState("");
@@ -84,7 +86,7 @@ const Datastore = ({ children }) => {
 
   }
 
-  useEffect(() => {
+  useEffect( () => {
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`
     )
@@ -111,11 +113,11 @@ const Datastore = ({ children }) => {
         let humidity = data.list[0].main.humidity;
         let speed = data.list[0].wind.speed;
         let weathercondition = data.list[0].weather[0].main;
-        
         details(temp,humidity,speed,weathercondition);
 
-        // let date = data.list[0].dt_txt;
-        
+        let weekdata = data.list.slice(0,7);
+        setWeeklyData(weekdata);
+        // console.log(weekdata)
 
       })
       .catch((error) => {
@@ -126,7 +128,7 @@ const Datastore = ({ children }) => {
 
   return (
     <>
-      <DataProvider.Provider value={{ NewCity, background, icon, location, values, Time}}>
+      <DataProvider.Provider value={{ NewCity, background, icon, location, values, Time, weeklyData}}>
         {children}
       </DataProvider.Provider>
     </>
