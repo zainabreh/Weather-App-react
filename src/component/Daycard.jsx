@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DataProvider } from '../store/Datastore'
 
-const Daycard = ({icon,time,values}) => {
-  
+const Daycard = () => {
+  const {icon,time} = useContext(DataProvider)
   return (
     <>
     
@@ -18,7 +19,7 @@ const Daycard = ({icon,time,values}) => {
             </div>
 
             <div className='tempHead'>
-            <h1 className='daytemp'>{values.main.temp}&deg;C</h1>
+            <h1 className='daytemp'>25.3&deg;C</h1>
             </div>
 
       </div>
