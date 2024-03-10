@@ -142,52 +142,6 @@ p {
   color: white;
   margin-bottom: 10px;
 }
-.day {
-  width: 100vw;
-  min-width: 500px;
-  padding-block: 15px;
-  display: flex;
-  align-items: center;
-  /* margin-top: 30px; */
-  position: fixed;
-  bottom: 0;
-  justify-content: space-evenly;
-  backdrop-filter: blur(6px) saturate(189%);
-  -webkit-backdrop-filter: blur(6px) saturate(189%);
-  background-color: rgba(36, 94, 121, 0.62);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
-  z-index: 60;
-}
-.dayhead{
-  color: white;
-}
-.daycard{
-  padding-block: 10px;
-  padding-inline: 20px;
-  text-align: center;
-  backdrop-filter: blur(6px) saturate(189%);
-  -webkit-backdrop-filter: blur(6px) saturate(189%);
-  background-color: rgba(63, 111, 135, 0.448);
-  border-radius: 12px;
-  border: 2px solid rgba(0, 0, 0, 0.125);
-  z-index: 70;
-}
-.daytemp{
-  margin-block: 10px;
-}
-.weatherdayicon{
-  width: 50px;
-  height: 50px;
-}
-.weatherdayicon img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-.daytemp{
-  font-size: 17.5px;
-}
 .hour{
   min-width: 500px;
   max-width: 800px;
@@ -229,4 +183,15 @@ p {
 }
 .hourtemp{
   font-size: 1rem;
+}
+
+@media only screen and (min-width: 300px){
+  .nav {
+    gap: 20px;
+    justify-content: center;
+  }
+  .maincard {
+    padding: 16px;
+    width: 100%;
+  }
 }

@@ -16,15 +16,12 @@ function App() {
           <Background />
           <div className="materialcontainer">
             <Navbar />
-
             <div className="minicontainer">
               <Maincard />
               <div className="hour">
               <Hourlist/>
               </div>
             </div>
-
-         
           </div>
         </div>
       </Datastore>
