@@ -11,9 +11,9 @@ const Maincard = () => {
     useEffect(() => {
       const timer = setInterval(() => {
         setDate(new Date());
-      }, 60 * 1000);
+      }, 60*1000);
 
-      return clearInterval(timer);
+      return ()=>clearInterval(timer);
     }, []);
     const time = today.toLocaleString("en", {
       hour: "numeric",

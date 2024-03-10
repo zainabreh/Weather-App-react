@@ -63,7 +63,7 @@ const Datastore = ({ children }) => {
 
   useEffect(() => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
     )
       .then((res) => {
         if (!res.ok) {
@@ -73,7 +73,7 @@ const Datastore = ({ children }) => {
       })
 
       .then((data) => {
-        
+
         let bg = data.list[0].weather[0].main.toLowerCase();
         let icon = data.list[0].weather[0].main.toLowerCase();
         weatherCondition(bg, icon);
