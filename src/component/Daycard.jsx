@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
-import { DataProvider } from '../store/Datastore'
+import React from 'react'
 
-const Daycard = () => {
-  const {icon,time} = useContext(DataProvider)
+const Daycard = ({day,icon}) => {
+ 
   return (
     <>
     
       <div className="daycard">
 
             <div className="dayhead">
-                <h3>{new Date(time).toLocaleTimeString('en',{weekday:'long'}).split(" ")[0]}</h3>
+                <h3>{day}</h3>
+                {/* <h3>{new Date(time).toLocaleTimeString('en',{weekday:'long'}).split(" ")[0]}</h3> */}
             </div>
 
             <hr className='HR'/>

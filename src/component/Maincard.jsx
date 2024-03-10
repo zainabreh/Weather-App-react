@@ -1,9 +1,26 @@
 import React, { useContext } from 'react'
 import { DataProvider } from '../store/Datastore'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Maincard = () => {
-  const {icon,location,values,Time} = useContext(DataProvider)
-  const {time} = Time();
+  const {icon,location,values} = useContext(DataProvider)
+
+  const [today, setDate] = useState(new Date());
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setDate(new Date());
+      }, 60 * 1000);
+
+      return clearInterval(timer);
+    }, []);
+    const time = today.toLocaleString("en", {
+      hour: "numeric",
+      hour12: true,
+      minute: "numeric",
+    });
+
   return (
     <>
       <div className="maincard">
