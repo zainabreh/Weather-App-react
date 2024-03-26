@@ -73,7 +73,7 @@ const Datastore = ({ children }) => {
       })
 
       .then((data) => {
-
+        console.log(data)
         let bg = data.list[0].weather[0].main.toLowerCase();
         let icon = data.list[0].weather[0].main.toLowerCase();
         weatherCondition(bg, icon);

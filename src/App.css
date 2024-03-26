@@ -144,7 +144,7 @@ p {
 }
 .hour{
   min-width: 500px;
-  max-width: 800px;
+  max-width: 600px;
   height: auto;
   padding: 15px;
   display: flex;
@@ -185,13 +185,43 @@ p {
   font-size: 1rem;
 }
 
-@media only screen and (min-width: 300px){
+@media only screen and (max-width: 767px){
+  .maincard {
+    margin-top: 50px;
+    min-width: 300px;
+    max-width: 400px;
+  }
   .nav {
+    font-size: 25px;
     gap: 20px;
+    text-align: center;
     justify-content: center;
   }
   .maincard {
     padding: 16px;
     width: 100%;
   }
+  .image {
+    object-fit: contain;
+  }
+  img {
+    height: 100%;
+    
+  }
+  .hour::-webkit-scrollbar{
+    width: 0;
+  }
+  .hour{
+    margin-top: 30px;
+    min-width: 110px;
+    justify-content: start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    align-items: initial;
+  }
+
+}
+
+@media only screen and (max-width: 767px){
+
 }
